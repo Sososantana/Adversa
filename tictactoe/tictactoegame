@@ -1,0 +1,106 @@
+// Tic Tac Toe Game
+
+// Create the game board
+let board = [
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', '']
+];
+
+// Variable to keep track of current player ('X' or 'O')
+let currentPlayer = 'X';
+
+// Function to check if a player has won
+function checkWin(player) {
+  // Check rows
+  for (let i = 0; i < 3; i++) {
+    if (
+      board[i][0] === player &&
+      board[i][1] === player &&
+      board[i][2] === player
+    ) {
+      return true;
+    }
+  }
+
+  // Check columns
+  for (let j = 0; j < 3; j++) {
+    if (
+      board[0][j] === player &&
+      board[1][j] === player &&
+      board[2][j] === player
+    ) {
+      return true;
+    }
+  }
+
+  // Check diagonals
+  if (
+    (board[0][0] === player && board[1][1] === player && board[2][2] === player) ||
+    (board[0][2] === player && board[1][1] === player && board[2][0] === player)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+// Function to check if the game is a tie
+function checkTie() {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] === '') {
+        return false; // If there is an empty cell, the game is not a tie
+      }
+    }
+  }
+  return true; // If all cells are filled and no player has won, the game is a tie
+}
+
+// Function to handle player's move
+function playMove(row, col) {
+  if (board[row][col] === '') {
+    board[row][col] = currentPlayer;
+
+    // Check if the current player has won
+    if (checkWin(currentPlayer)) {
+      console.log('Player ' + currentPlayer + ' wins!');
+      resetGame();
+      return;
+    }
+
+    // Check if the game is a tie
+    if (checkTie()) {
+      console.log('It\'s a tie!');
+      resetGame();
+      return;
+    }
+
+    // Switch players
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+
+    // Print the updated board
+    console.log(board);
+  } else {
+    console.log('Invalid move! Try again.');
+  }
+}
+
+// Function to reset the game
+function resetGame() {
+  board = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ];
+  currentPlayer = 'X';
+  console.log('Game reset.');
+}
+
+// Example moves
+playMove(0, 0); // X
+playMove(1, 0); // O
+playMove(0, 1); // X
+playMove(1, 1); // O
+playMove(0, 2); // X
+playMove(1, 2); // O
