@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+  <title style="color: black">Adversa</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* CSS styling for the webpage */
     body {
-      font-family: "Brush Script MT", cursive, Arial, sans-serif;
+      font-family: "Times New Roman", Times, serif;
       margin: 0;
       padding: 0;
       background-color: #f0f0f0; /* Set a light background color */
@@ -104,23 +104,108 @@
       max-width: 300px;
       margin: 10px;
     }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      margin: 0 10px;
+    }
+
+    .tab a {
+      color: #333;
+      text-decoration: none;
+      padding: 5px 10px;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+
+    .tab a:hover {
+      background-color: #333;
+      color: #fff;
+    }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>About Adversa</h1>
+    <h1>Adversa</h1>
+    <nav>
+      <a href="./page44.html">About</a>
+      <a href="profile.html">Profile</a>
+      <a href="./Quill.html">Therapy Room</a>
+      <a href="./page22.html">Backup Options</a>
+      <a href="connecting.html">Connecting</a>
+    </nav>
   </header>
 
   <main>
-    <p>Mental health help platform.</p>
-    <p>As the creator of this platform I was impacted by demographic and being underprivlegde as I grew up in the Bronx. I want to eliminate the stigma for people like me, that belived at one time that obtaining therapy might be looked at as weak.</p>
-    <p> Here at ADVERSA WE ARE COMBATING ADVERSITY.</p>
-  </main>
+    <div class="tabs">
+      <div class="tab">
+        <a href="#login">Login</a>
+      </div>
+      <div class="tab">
+        <a href="#signup">Sign Up</a>
+      </div>
+    </div>
 
-  <footer>
+    <div id="login">
+      <h2>Adversa Login</h2>
+      <form action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <input type="submit" value="Log In">
+      </form>
+    </div>
+
+    <div id="signup" style="display: none;">
+      <h2>Adversa Sign Up</h2>
+      <form action="/signup" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="signup-username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="signup-password" name="password" required>
+        
+        <input type="submit" value="Sign Up">
+      </form>
+    </div>
+  </main>
+  
+  <script>
+    const tabs = document.querySelectorAll('.tab a');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        const allTabs = document.querySelectorAll('.tab');
+
+        allTabs.forEach(tab => {
+          const tabId = tab.querySelector('a').getAttribute('href').slice(1);
+          const tabContent = document.getElementById(tabId);
+          tabContent.style.display = 'none';
+          tab.classList.remove('active');
+        });
+
+        tab.parentNode.classList.add('active');
+        target.style.display = 'block';
+      });
+    });
+  </script>
+  
+    <footer>
     <p>&copy; 2023 Mental Health Support</p>
   </footer>
 </body>
-
+</body>
 </html>
+
+
