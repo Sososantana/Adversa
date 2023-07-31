@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+ 
+ </style>
+</head>
+<body>
+  <header>
+    <h1>Adversa</h1>
+    <nav>
+      <a href="./page44.html">About</a>
+      <a href="profile.html">Profile</a>
+      <a href="./Quill.html">Therapy Room</a>
+      <a href="./page22.html">Backup Options</a>
+      <a href="connecting.html">Connecting</a>
+    </nav>
+  </header>
+
+  <h1>Profile Page</h1>
+  <form action="profile.php" method="post">
+    <p>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+    </p>
+    <p>
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" id="email">
+    </p>
+    <p>
+      <label for="date_of_birth">Date of Birth:</label>
+      <input type="date" name="date_of_birth" id="date_of_birth">
+    </p>
+    <p>
+      <label for="gender">Gender:</label>
+      <input type="radio" name="gender" id="male" value="male"> Male
+      <input type="radio" name="gender" id="female" value="female"> Female
+      <input type="radio" name="gender" id="other" value="other"> Other
+    </p>
+    <p>
+      <label for="bio">Bio:</label>
+      <textarea name="bio" id="bio"></textarea>
+    </p>
+    <p>
+      <input type="submit" value="Save">
+    </p>
+  </form>
+
+  <footer>
+    <p>&copy; 2023 Mental Health Support</p>
+  </footer>
+</body>
+</html>
