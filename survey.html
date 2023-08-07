@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adversa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* CSS styling for the webpage */
+    body {
+      font-family: "Times New Roman", Times, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0; /* Set a light background color */
+    }
+
+    header {
+      background-color: #33ff33; /* Neon green background color */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      /* Add a cool design on the banner */
+      background-image: linear-gradient(to bottom, #ffffff, #33ff33);
+      border-bottom: 2px solid #555;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      /* Add a cool color scheme for the title */
+      color: #000000; /* Black color */
+      position: relative;
+      animation-name: floatName;
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: 1;
+    }
+
+    main {
+      margin: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Add a cool design on the banner on top and bottom of page */
+    header:before,
+    header:after,
+    footer:before,
+    footer:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-image: linear-gradient(to right, #ffffff, #33ff33, #ffffff); /* Neon green gradient */
+    }
+
+    header:before {
+      top: -10px;
+    }
+
+    header:after {
+      bottom: -10px;
+    }
+
+    footer:before {
+      top: -10px;
+    }
+
+    footer:after {
+      bottom: -10px;
+    }
+
+    @keyframes floatName {
+      0% {
+        font-size: 24px;
+      }
+
+      50% {
+        font-size: 36px;
+      }
+
+      100% {
+        font-size: 24px;
+      }
+    }
+
+    /* Styling for the tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      margin: 0 10px;
+    }
+
+    .tab.active-tab {
+      background-color: #33ff33;
+      color: white;
+      border-color: #33ff33;
+    }
+
+    .tab:not(.active-tab):hover {
+      background-color: #e0e0e0;
+      border-color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Adversa</h1>
+    <nav>
+      <a href="page2.html">About</a>
+      <a href="page4.html">Profile</a>
+      <a href="pagequill5.html">Therapy Room</a>
+      <a href="page.html">Backup Options</a>
+      <a href="page6.html">Connecting</a>
+      <a href="survey.html">Survey</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <div class="tab active-tab" id="for-clients-tab">For Clients</div>
+      <div class="tab" id="for-therapist-tab">For Therapist</div>
+    </div>
+
+    <form id="questionnaire-form" style="display: none;">
+      <h1>Questionnaire</h1>
+      <p>1. Can you rate your mental health on a scale from 1-10 in which 1 is the worst and 10 is the best?</p>
+      <input type="number" name="mental_health" min="1" max="10" required>
+      <p>2. Have you been impacted by the judicial system?</p>
+      <input type="radio" name="judicial_system" value="yes"> Yes
+      <input type="radio" name="judicial_system" value="no"> No
+      <p>3. What outlets, if any, do you have?</p>
+      <input type="text" name="outlets">
+      <input type="submit">
+    </form>
+    
+    <form id="therapist-questionnaire-form" style="display: none;">
+      <h1>Therapist Questionnaire</h1>
+      <p>
+        <label for="primary_area_of_specialization">What is your primary area of specialization or expertise as a therapist?</label>
+        <input type="text" name="primary_area_of_specialization" id="primary_area_of_specialization">
+      </p>
+      <p>
+        <label for="therapeutic_approaches_or_modalities">Which therapeutic approaches or modalities do you use most frequently in your practice?</label>
+        <input type="text" name="therapeutic_approaches_or_modalities" id="therapeutic_approaches_or_modalities">
+      </p>
+      <p>
+        <label for="specific_populations">Do you have experience working with specific populations (e.g., children, adolescents, adults, LGBTQ+, veterans, etc.)?</label>
+        <input type="text" name="specific_populations" id="specific_populations">
+      </p>
+      <p>
+        <label for="mental_health_issues_or_conditions">Are there particular mental health issues or conditions you feel most comfortable treating?</label>
+        <input type="text" name="mental_health_issues_or_conditions" id="mental_health_issues_or_conditions">
+      </p>
+      <p>
+        <label for="specialized_training_or_certifications">Have you received any specialized training or certifications related to mental health or therapy?</label>
+        <input type="text" name="specialized_training_or_certifications" id="specialized_training_or_certifications">
+      </p>
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+    </form>
+  </main>
+  
+  <footer>
+    <p>&copy; 2023 Mental Health Support</p>
+  </footer>
+
+  <script>
+    const forClientsTab = document.getElementById('for-clients-tab');
+    const forTherapistTab = document.getElementById('for-therapist-tab');
+    const questionnaireForm = document.getElementById('questionnaire-form');
+    const therapistQuestionnaireForm = document.getElementById('therapist-questionnaire-form');
+
+    forClientsTab.addEventListener('click', () => {
+      forClientsTab.classList.add('active-tab');
+      forTherapistTab.classList.remove('active-tab');
+      questionnaireForm.style.display = 'block';
+      therapistQuestionnaireForm.style.display = 'none';
+    });
+
+    forTherapistTab.addEventListener('click', () => {
+      forTherapistTab.classList.add('active-tab');
+      forClientsTab.classList.remove('active-tab');
+      questionnaireForm.style.display = 'none';
+      therapistQuestionnaireForm.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
