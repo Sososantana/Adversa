@@ -174,6 +174,28 @@
     .tab-content form input[type="submit"]:hover {
       background-color: #1fad1f;
     }
+
+    .tab {
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      margin: 0 10px;
+    }
+
+    .tab.active-tab {
+      background-color: #33ff33;
+      color: white;
+      border-color: #33ff33;
+    }
+
+    .tab:not(.active-tab):hover {
+      background-color: #e0e0e0;
+      border-color: #aaa;
+    }
   </style>
 </head>
 
@@ -186,7 +208,6 @@
       <a href="pagequill5.html">Therapy Room</a>
       <a href="page.html">Backup Options</a>
       <a href="page6.html">Connecting</a>
-      <a href="survey.html">Survey</a>
     </nav>
   </header>
 
@@ -209,21 +230,6 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         
-        <label for="profile-picture">Profile Picture:</label>
-        <input type="file" id="profile-picture" name="profilePicture">
-        
-        <label for="bio">Bio:</label>
-        <textarea id="bio" name="bio" rows="4" required></textarea>
-        
-        <label for="fullname">Full Name:</label>
-        <input type="text" id="fullname" name="fullname" required>
-        
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required>
-        
-        <label for="therapy-experience">Therapy Experience:</label>
-        <textarea id="therapy-experience" name="therapyExperience" rows="4" required></textarea>
-        
         <input type="submit" value="Log In">
       </form>
     </div>
@@ -233,6 +239,9 @@
       <form action="/signup" method="POST">
         <label for="signup-fullname">Full Name:</label>
         <input type="text" id="signup-fullname" name="fullname" required>
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
         
         <label for="signup-dob">Date of Birth:</label>
         <input type="date" id="signup-dob" name="dob" required>
@@ -245,37 +254,121 @@
         <label for="signup-email">Email Address:</label>
         <input type="email" id="signup-email" name="email" required>
         
+        <label for="profile-picture">Profile Picture:</label>
+        <input type="file" id="profile-picture" name="profilePicture">
+        
+        <label for="bio">Bio:</label>
+        <textarea id="bio" name="bio" rows="4" required></textarea>
+                       
+        <label for="therapy-experience">Therapy Experience:</label>
+        <textarea id="therapy-experience" name="therapyExperience" rows="4" required></textarea>
+        
         <input type="submit" value="Sign Up">
       </form>
     </div>
+
+    <div class="tabs">
+      <div class="tab active-tab" id="for-clients-tab">For Clients</div>
+      <div class="tab" id="for-therapist-tab">For Therapists</div>
+    </div>
+
+    <form id="questionnaire-form" style="display: none;">
+      <h1>Questionnaire</h1>
+      <p>1. Can you rate your mental health on a scale from 1-10 in which 1 is the worst and 10 is the best?</p>
+      <input type="number" name="mental_health" min="1" max="10" required>
+      <p>2. Have you been impacted by the judicial system?</p>
+      <input type="radio" name="judicial_system" value="yes"> Yes
+      <input type="radio" name="judicial_system" value="no"> No
+      <p>3. What outlets, if any, do you have?</p>
+      <input type="text" name="outlets">
+      <input type="submit">
+    </form>
+
+    <form id="therapist-questionnaire-form" style="display: none;">
+      <h1>Therapist Questionnaire</h1>
+      <p>
+        <label for="primary_area_of_specialization">What is your primary area of specialization or expertise as a therapist?</label>
+        <input type="text" name="primary_area_of_specialization" id="primary_area_of_specialization">
+      </p>
+      <p>
+        <label for="therapeutic_approaches_or_modalities">Which therapeutic approaches or modalities do you use most frequently in your practice?</label>
+        <input type="text" name="therapeutic_approaches_or_modalities" id="therapeutic_approaches_or_modalities">
+      </p>
+      <p>
+        <label for="specific_populations">Do you have experience working with specific populations (e.g., children, adolescents, adults, LGBTQ+, veterans, etc.)?</label>
+        <input type="text" name="specific_populations" id="specific_populations">
+      </p>
+      <p>
+        <label for="mental_health_issues_or_conditions">Are there particular mental health issues or conditions you feel most comfortable treating?</label>
+        <input type="text" name="mental_health_issues_or_conditions" id="mental_health_issues_or_conditions">
+      </p>
+      <p>
+        <label for="specialized_training_or_certifications">Have you received any specialized training or certifications related to mental health or therapy?</label>
+        <input type="text" name="specialized_training_or_certifications" id="specialized_training_or_certifications">
+      </p>
+      <p>
+        <input type="submit" value="Submit">
+      </p>
+    </form>
   </main>
-  
-  <script>
-    const tabs = document.querySelectorAll('.tab a');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href').slice(1);
-        const target = document.getElementById(targetId);
-        const allTabs = document.querySelectorAll('.tab');
-
-        allTabs.forEach(tab => {
-          const tabId = tab.querySelector('a').getAttribute('href').slice(1);
-          const tabContent = document.getElementById(tabId);
-          tabContent.style.display = 'none';
-          tab.classList.remove('active');
-        });
-
-        tab.parentNode.classList.add('active');
-        target.style.display = 'block';
-      });
-    });
-  </script>
-  
 
   <footer>
     <p>&copy; 2023 Mental Health Support</p>
   </footer>
+
+  <script>
+  const tabs = document.querySelectorAll('.tab a');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = e.target.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      const allTabs = document.querySelectorAll('.tab');
+
+      allTabs.forEach(tab => {
+        const tabId = tab.querySelector('a').getAttribute('href').slice(1);
+        const tabContent = document.getElementById(tabId);
+        tabContent.style.display = 'none';
+        tab.classList.remove('active');
+      });
+
+      tab.parentNode.classList.add('active');
+      target.style.display = 'block';
+    });
+  });
+
+  const forClientsTab = document.getElementById('for-clients-tab');
+  const forTherapistTab = document.getElementById('for-therapist-tab');
+  const questionnaireForm = document.getElementById('questionnaire-form');
+  const therapistQuestionnaireForm = document.getElementById('therapist-questionnaire-form');
+  const signupTab = document.querySelector('.tab a[href="#signup"]'); // Get the "Sign Up" tab link
+  const signupContent = document.getElementById('signup'); // Get the "Sign Up" tab content
+
+  signupTab.addEventListener('click', () => {
+    // Hide other forms and show the "Sign Up" form
+    forClientsTab.classList.remove('active-tab');
+    forTherapistTab.classList.remove('active-tab');
+    questionnaireForm.style.display = 'none';
+    therapistQuestionnaireForm.style.display = 'none';
+    signupContent.style.display = 'block';
+  });
+
+  forClientsTab.addEventListener('click', () => {
+    forClientsTab.classList.add('active-tab');
+    forTherapistTab.classList.remove('active-tab');
+    questionnaireForm.style.display = 'block';
+    therapistQuestionnaireForm.style.display = 'none';
+    signupContent.style.display = 'none';
+  });
+
+  forTherapistTab.addEventListener('click', () => {
+    forTherapistTab.classList.add('active-tab');
+    forClientsTab.classList.remove('active-tab');
+    questionnaireForm.style.display = 'none';
+    therapistQuestionnaireForm.style.display = 'block';
+    signupContent.style.display = 'none';
+  });
+</script>
 </body>
 
 </html>
